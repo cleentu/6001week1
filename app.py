@@ -6,7 +6,7 @@ import textblob
 import google.generativeai as gen_ai
 
 import os
-api =os.getenv('makersuite')
+api =os.getenv('makersuite') #omit if hardcoded in genai_result function
 api = 'AIzaSyCmQpUmyFbGn9gbi61v22PS6OI8Fn4DYTk'
 
 
@@ -38,7 +38,7 @@ def genai():
 @app.route("/genai_result", methods=["GET", "POST"])
 def genai_result():
     q = request.form.get('q')
-    gen_ai.configure(api_key=api)
+    gen_ai.configure(api_key=api) #hard code api key directly api_key = xxx
     model=gen_ai.GenerativeModel('gemini-1.5-flash')
     r = model.generate_content(q)
     r =r.text
